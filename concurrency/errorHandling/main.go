@@ -11,10 +11,10 @@ func main() {
 	}()
 	fmt.Println("before defer")
 
-doerror()
+MakeError()
 fmt.Println("After defer")
 }
-func doerror() {
+func MakeError() {
 	fmt.Println("next step is panic")
 	panic("PANIC")
 	fmt.Println("hello world")
