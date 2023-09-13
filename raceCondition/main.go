@@ -9,25 +9,25 @@ import (
 func main() {
 	var mut sync.Mutex
 	abc := 10
-	go one(&abc,&mut)
-	go two(&abc,&mut)
-	go three(&abc,&mut)
-	time.Sleep(2 * time.Second)
+	go one(&abc, &mut)
+	go two(&abc, &mut)
+	go three(&abc, &mut)
+	time.Sleep(3 * time.Millisecond)
 	fmt.Println(abc)
 }
 
-func one(abc *int,m *sync.Mutex) {
-m.Lock()
-	*abc = 00
+func one(abc *int, m *sync.Mutex) {
+	m.Lock()
+	*abc = 1
 	m.Unlock()
 }
-func two(abc *int,m *sync.Mutex) {
+func two(abc *int, m *sync.Mutex) {
 	m.Lock()
-	*abc = 7888
+	*abc = 2
 	m.Unlock()
 }
-func three(abc *int,m *sync.Mutex) {
+func three(abc *int, m *sync.Mutex) {
 	m.Lock()
-	*abc = 8000
-m.Unlock()
+	*abc = 3
+	m.Unlock()
 }
