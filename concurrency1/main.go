@@ -7,9 +7,8 @@ import (
 	"time"
 )
 
-func calculateSqaure(i int, count *int) {
+func calculateSqaure(i int, count *int, mutex *sync.Mutex) {
 	fmt.Println(i * i)
-	mutex := sync.Mutex{}
 	mutex.Lock()
 	*count++
 	mutex.Unlock()
@@ -18,10 +17,12 @@ func calculateSqaure(i int, count *int) {
 func main() {
 	count := 0
 	start := time.Now()
+	mutex := sync.Mutex{}
+
 	for i := 1; i < 200; i++ {
 		//this means n function call  will execute in
 		//n goroutines.
-		go calculateSqaure(i, &count)
+		go calculateSqaure(i, &count, &mutex)
 	}
 	defer fmt.Println(runtime.NumCPU(), ": Logical cpu used \n ")
 	defer fmt.Println(runtime.NumGoroutine(), "Goroutines created \n ")
