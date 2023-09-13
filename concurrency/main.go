@@ -24,10 +24,12 @@ func main() {
 		//n goroutines.
 		go calculateSqaure(i, &count, &mutex)
 	}
-	defer fmt.Println(runtime.NumCPU(), ": Logical cpu used \n ")
-	defer fmt.Println(runtime.NumGoroutine(), "Goroutines created \n ")
+	fmt.Println(runtime.NumCPU(), ": Logical cpu used \n ")
+	fmt.Println(runtime.NumGoroutine(), "Goroutines created \n ")
+
 	time.Sleep(4 * time.Second)
+
 	elapsed := time.Since(start)
+
 	fmt.Println("function took", elapsed)
-	fmt.Println("")
 }

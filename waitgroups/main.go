@@ -6,20 +6,22 @@ import (
 	"time"
 )
 
-var wg sync.WaitGroup
 func main() {
-	start:=time.Now()
+	var wg sync.WaitGroup
+
+	start := time.Now()
 	wg.Add(10)
-	for i:=0;i<10;i++{
-go calculatesquare(i,&wg)
+	for i := 0; i < 10; i++ {
+		go calculateSquare(i, &wg)
 	}
-wg.Wait()
-	fmt.Println("time took",time.Since(start))
-	
+
+	wg.Wait()
+
+	fmt.Println("time took", time.Since(start))
 
 }
 
-func calculatesquare(i int,wg *sync.WaitGroup){
-	fmt.Println(i*i)
+func calculateSquare(i int, wg *sync.WaitGroup) {
+	fmt.Println(i * i)
 	wg.Done()
 }
