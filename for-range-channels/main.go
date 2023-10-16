@@ -14,19 +14,15 @@ func main() {
 	ch <- 100
 	ch <- 200
 	ch <- 300
-	// close(ch)
+	close(ch)
 	wg.Wait()
 
 }
 
 func buy(ch chan int, wg *sync.WaitGroup) {
-	// for val := range ch {
-	// 	fmt.Println(val)
+	for val := range ch {
+		fmt.Println(val)
 
-	// }
-	fmt.Println(<-ch)
-	fmt.Println(<-ch)
-	fmt.Println(<-ch)
-   
+	}
 	wg.Done()
 }
